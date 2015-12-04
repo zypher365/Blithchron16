@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Exo+2:900);
+* {
+    box-sizing: border-box;
+}
+
+.special,
+.special .jumbotron,
+.special .carousel {
+    height: auto;
+}
+
+html,
+body {
+    height: 100%;
+    background: black;
+}
+
+.container-fluid {
+    opacity: 100%;
+    padding: 7px;
+}
+
+div.navbar-brand a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Exo 2', sans-serif;
+}
+
+glyphicon-th-list {
+    color: white;
+}
+
+#banner {
+    height: 100%;
+    background: black;
+    text-align: center;
+    background-image: url("img.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    border-radius: 0px;
+    font-family: 'Exo 2', sans-serif;
+}
+
+h1.B16 {
+    text-decoration: none;
+    color: white;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 5px;
+}
+
+.carousel-caption {
+    top: 30%;
+    bottom: auto;
+}
+
+#section1.container {
+    background: repeating-radial-gradient( circle, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
+}
