@@ -31,10 +31,346 @@
 		<link rel="stylesheet" type="text/css" href="css/mycustom.css">
      
    
-    
+
+<!--	Validation-->
+	
+	 <script>
+        $(document).ready(function () {
+            $('#loginalert').hide();
+
+            $(window).scroll(function () {
+                var yPos = -$(window).scrollTop() / 3;
+
+                var c = '0px ' + yPos + 'px';
+
+                $('#abc').css({
+                    backgroundPosition: c
+                });
+                $('#banner').css({
+                    backgroundPosition: c
+                });
+            });
+
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#login').focus();
+            });
+
+            $('#myModal').on('hidden.bs.modal', function () {
+                $('#loginalert').hide();
+            });
+
+            /*$('#login').blur(function () {
+                if ($('#login').val() == "" || $('#login').val() == " ") {
+                    $('#loginalert').slideDown();
+                }
+            });*/
+
+            $('#login').focusin(function (evt) {
+                $('#loginalert').slideUp();
+            });
+
+            $('.content').hide();
+
+            $('.content').first().show();
+
+            $('.drop').click(function (evt) {
+                if (!$(this).hasClass('dropped')) {
+                    $(this).next('.content').slideDown();
+                    $(this).addClass('dropped');
+                    $(this).find('.glyphicon').removeClass('glyphicon-plus');
+                    $(this).find('.glyphicon').addClass('glyphicon-minus');
+                } else {
+                    ($(this).next('.content')).slideUp();
+                    $(this).removeClass('dropped');
+                    $(this).find('.glyphicon').addClass('glyphicon-plus');
+                    $(this).find('.glyphicon').removeClass('glyphicon-minus');
+                }
+            });
+
+            $('.social').hover(function () {
+                $(this).css('opacity', '0.5');
+            }, function () {
+                $(this).css('opacity', '1.0');
+            });
+
+            $('.content img').hover(function () {
+                $(this).css('opacity', '0.5');
+            }, function () {
+                $(this).css('opacity', '1.0');
+            });
+
+            $('a[href^=#]').click(function (evt) {
+                evt.preventDefault();
+                var sel = '' + $(this).attr('href');
+                $("html, body").animate({
+                    scrollTop: $(sel).offset().top
+                }, 800);
+            });
+
+            //Functions for Create Account Modal
+            $('#colname').hide()
+
+            $('#createAccount').on('shown.bs.modal', function () {
+                $('#fname').focus();
+            });
+
+            $('div[id^="alert-"]').hide();
+
+            $('img[id$="-load"]').hide();
+
+            $('#re-ok').hide()
+            $('#re-nok').hide()
+
+            $('#fname').blur(function () {
+                if ($('#fname').val() == "" || $('#fname').val() == " ") {
+                    $('#alert-name').slideDown();
+                }
+            });
+
+            $('#lname').blur(function () {
+                if ($('#lname').val() == "" || $('#lname').val() == " ") {
+                    $('#alert-name').slideDown();
+                }
+            });
+
+            $('#fname').focusin(function (evt) {
+                $('#alert-name').slideUp();
+            });
+
+            $('#lname').focusin(function (evt) {
+                if (!($('#fname').val() == "" || $('#fname').val() == " ")) {
+                    $('#alert-name').slideUp();
+                }
+            });
+
+            $('#email').keypress(function (evt) {
+                $('#email-load').fadeIn();
+            });
+
+            $('#email').focusin(function (evt) {
+                $('#alert-email').slideUp();
+            });
+
+            $('#email').blur(function () {
+                if ($('#email').val() == "" || $('#email').val() == " ") {
+                    $('#alert-email').slideDown();
+                }
+            });
+
+            $('#pwd').blur(function () {
+                if ($('#pwd').val() == "" || $('#pwd').val() == " ") {
+                    $('#alert-pwd').slideDown();
+                } else {}
+            });
+
+            $('#re').attr('disabled', 'disabled');
+
+            $('#pwd').keyup(function () {
+                if ($('#pwd').val() == "" || $('#pwd').val() == " ") {
+                    $('#re').attr('disabled', 'disabled');
+                } else {
+                    $('#re').removeAttr('disabled');
+                }
+            });
+
+
+            $('#pwd').focusin(function (evt) {
+                $('#alert-pwd').slideUp();
+            });
+
+            $('#re').blur(function () {
+                if ($('#re').val() == "" || $('#re').val() == " ") {
+                    $('#re-alert').slideDown();
+                }
+
+            });
+
+            $('#re').keyup(function () {
+                if ($('#re').val() == $('#pwd').val()) {
+                    $('#re-nok').hide()
+                    $('#re-ok').fadeIn();
+                } else {
+                    $('#re-ok').hide()
+                    $('#re-nok').fadeIn();
+                }
+            });
+
+            $('#re').focusin(function (evt) {
+                $('#alert-re').slideUp();
+            });
+
+
+            $('#stud').change(function (evt) {
+                if ($('#stud').prop('checked')) {
+                    $('#colname').slideDown()
+                } else {
+                    $('#colname').slideUp()
+                }
+            });
+
+
+
+        });
+    </script>
+	
 
 	</head>
 	<body  >
+		
+		<!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="font-family: 'Titillium Web', sans-serif;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" style="font-family: 'Titillium Web', sans-serif;">&times;</button>
+                    <h4 class="modal-title">Login to Continue</h4>
+                </div>
+                <div class="modal-body">
+                    <h1>Login</h1>
+                    <form>
+                        <div class="row" style="padding: 2px">
+                            <div class="col-sm-4">Email ID:</div>
+                            <div class="col-sm-6">
+                                <input type="text" id="login" placeholder="johndoe@example.com" style="width: 100%">
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row" id="loginalert" style="padding-left: 1%; padding-right: 1%">
+
+                        </div>
+                        <div class="row" style="padding: 2px">
+                            <div class="col-sm-4">Password:</div>
+                            <div class="col-sm-6">
+                                <input type="password" id="pass" placeholder="Enter Password" style="width: 100%">
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding: 2px">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="submit" style="font-family: 'Titillium Web', sans-serif;" value="Login">
+                            </div>
+                        </div>
+                    </form>
+                    <h4>
+                        <hr>Don't have an account? <a href="#" id="accLink" data-toggle="modal" data-dismiss="modal" data-target="#createAccount">Sign Up Now</a>
+                    </div>
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="font-family: 'Titillium Web', sans-serif;">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        
+    <!--Create Account Modal-->
+    <div class="modal fade" id="createAccount" role="dialog">  
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="font-family: 'Titillium Web', sans-serif;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" style="font-family: 'Titillium Web', sans-serif;">&times;</button>
+                    <h4 class="modal-title">Create Account</h4>
+                </div>
+                <div class="modal-body">
+                    Fields marked * are mandatory
+                    <br>
+                    <br>
+                    <form id="createForm">
+                        <div class="row">
+                            <div class="col-md-3">Enter Name*</div>
+                            <div class="col-md-3">
+                                <input type="text" style="width:100%" placeholder="First Name" id="fname">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" style="width:100%" placeholder="Last Name" id="lname">
+                            </div>
+                        </div>
+                        <div class="row" style="padding:1%;">
+                            <div class="alert alert-danger" id="alert-name">Enter complete name!</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Email ID *</div>
+                            <div class="col-md-6">
+                                <input type="text" style="width:100%" placeholder="Enter your Email ID" id="email">
+                            </div>
+                            <div class="col-md-3">
+                                <img src="img/loading.gif" style="width: 20px; height: 20px; vertical-align: middle;" id="email-load">
+                            </div>
+
+                        </div>
+                        <div class="row" style="padding:1%;">
+                            <div class="alert alert-danger" id="alert-email">Please enter your Email ID!</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Create a Password*</div>
+                            <div class="col-md-6">
+                                <input type="password" style="width:100%" placeholder="Enter a new password" id="pwd">
+                            </div>
+                        </div>
+                        <div class="row" style="padding:1%;">
+                            <div class="alert alert-danger" id="alert-pwd">Enter password!</div>
+                        </div>
+                        <div class="row" style="margin-top:1%">
+                            <div class="col-md-3">Re-enter the Password*</div>
+                            <div class="col-md-6">
+                                <input type="password" style="width:100%" placeholder="Re-enter password to verify" id="re">
+                            </div>
+                            <div class="col-md-3">
+                                <div id="re-ok"><span class="glyphicon glyphicon-ok" style="color: green"></span> Match</div>
+                                <div id="re-nok"><span class="glyphicon glyphicon-remove" style="color: red"></span> Do not Match</div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding:1%;">
+                            <div class="alert alert-danger" id="alert-re">Re-enter password!</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Are you a student?</div>
+                            <div class="col-md-6">
+                                <input type="checkbox" id="stud">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 1%" id="colname">
+                            <div class="col-md-3">Name of College</div>
+                            <div class="col-md-6">
+                                <input type="text" style="width:100%">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 1%">
+                            <div class="col-md-3">How did you get to hear about Blithchron?</div>
+                            <div class="col-md-6">
+                                <select style="width:100%" id="hearbc">
+                                    <option value="def">--Select--</option>
+                                    <option value="opt1">Social Media</option>
+                                    <option value="opt2">Marketing at Colleges</option>
+                                    <option value="opt3">Print Media</option>
+                                    <option value="opt3">Through friends</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="createForm" class="btn btn-primary" style="font-family: 'Titillium Web', sans-serif;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		
+		
+		
+		
+		
+		
+		
 		<div id="st-container" class="st-container st-effect-11">
 			<!-- 	
 				example menus 
@@ -63,7 +399,7 @@
 					example menus 
 					these menus will be under the push wrapper
 				-->
-    
+              
 				
 			
 				<div class="st-content" style="width:100%;"><!-- this is the wrapper for the content -->
@@ -100,17 +436,29 @@
     <!--Navbar starts-->
     
     <!--Navbar ends-->
-    <div class="container-fluid special">
+    <div class="container-fluid special" style="background:black; overflow:hidden;">
         
         
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
         <!--Banner-->
         <div class="jumbotron" id="banner">
+			
+			
             <nav class="navbar navbar-top" id="myNav">
-        <div class="container">
-            <div class="navbar-header active">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNav">
-                    <span class="glyphicon glyphicon-menu-down"></span>
-                </button>
+				<div class="container">
+					<div class="navbar-header active">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNav">
+							<span class="glyphicon glyphicon-menu-down"></span>
+						</button>
                 <div class="navbar-brand" style="">
                     <a href="#banner" id="B16">Blithchron 2016</a>
                 </div>
@@ -122,14 +470,13 @@
                     <li><a href="#myCarousel">What's New</a></li>
                     <li><a href="#section2">Events</a></li>
                     <li><a href="#section3">Village</a></li>
-                    <li><a href="#section4"><span class="glyphicon glyphicon-earphone"></span>Contact Us</a></li>
+					<li><a href="#">Sponsors</a></li>
+                    <li><a href="#section4">Contact Us</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" style="color:yellow">
-                    <li><a href="#"><span class="glyphicon glyphicon-star-empty"></span>Proshows</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span>Registrations</a></li>
-                    <li><a href="#">Sponsors</a></li>
-
+                    
+					<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
 
                 </ul>
             </div>
@@ -158,7 +505,7 @@
 
         <!--About Us-->
 
-        <div class="jumbotron" id="section1" style="background: black; padding: 15%">
+        <div class="jumbotron" id="section1" style="background: black; padding: 15%; margin-top:-33px;">
             <div class="container" style="color:white; background:black;">
                 <div class="page-header">
                     <h1>About Blithchron</h1></div>
@@ -170,8 +517,8 @@
 
 
         <!--What's New-->
-
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="pause" data-wrap="true">
+		
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="pause" data-wrap="true" style="margin-top:-31px;">
             <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -221,54 +568,240 @@
 
         <!--Events-->
 
-        <div class="jumbotron" id="section2" style="position:relative; background:black;">
+        <div class="container-fluid" id="section2">
+        <div class="jumbotron" style="background:black;">
             <div class="container" style="color:white">
                 <div class="page-header">
                     <h1>Events</h1></div>
-                <div class="col-md-12">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#">Panache</a></li>
-                        <li><a href="#">The Butler Did It</a></li>
-                        <li><a href="#">Antaragnee</a></li>
-                        <li><a href="#">Euphony</a></li>
-                        <li><a href="#">Adrenaline</a></li>
-                        <li><a href="#">Synchronize</a></li>
-                        <li><a href="#">String Theory</a></li>
-                        <li><a href="#">Stand Up Comedy</a></li>
-                        <li><a href="#">Alfaaz</a></li>
-                        <li><a href="#">Jobless</a></li>
-                        <li><a href="#">Mr. and Mrs. Blithchron</a></li>
-                        <li><a href="#">Skirmish</a></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Panache</a></li>
+                            <li><a href="#tab2" data-toggle="tab">The Butler Did It</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Antaragnee</a></li>
+                            <li><a href="#tab4" data-toggle="tab">Euphony</a></li>
+                            <li><a href="#tab5" data-toggle="tab">Adrenaline</a></li>
+                            <li><a href="#tab6" data-toggle="tab">Synchronize</a></li>
+                            <li><a href="#tab7" data-toggle="tab">String Theory</a></li>
+                            <li><a href="#tab8" data-toggle="tab">Stand Up Comedy</a></li>
+                            <li><a href="#tab9" data-toggle="tab">Alfaaz</a></li>
+                            <li><a href="#tab10" data-toggle="tab">Jobless</a></li>
+                            <li><a href="#tab11" data-toggle="tab">Mr. and Mrs. Blithchron</a></li>
+                            <li><a href="#tab12" data-toggle="tab">Skirmish</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="tab-content">
+                            <div id="tab1" class="tab-pane fade in active">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/panache.png">
+                                    <div class="caption">
+                                        <h3>Panache</h3>
+                                        <p>The war of fashionistas, Blithchron presents to you 'Panache', an opportunity to show off the best of your designs and set the stage on fire. Blessed with oodles of oomph and chutzpah, these ladies sure know how to leave an audience drooling and entranced with their sizzling glam quotient.</p>
+                                        <p>Take part in this year's Blithchron to bring out the passion in you and show it off in front of the whole of Ahmedabad!
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab2" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/tbdi.jpg">
+                                    <div class="caption">
+                                        <h3>The Butler Did It</h3>
+                                        <p>Isn't it amazing to see the "extraordinarily gifted" detectives and agents reach the very roots of the perfect crime and unmask the culprit as the case unfolds? This is the event where we let people don the hat of a detective as they solve cleverly crafted mysteries.</p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab3" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/antaragnee-inc.jpg" style="width: 100%">
+                                    <div class="caption">
+                                        <h3>Antaragnee</h3>
+                                        <p>
+                                            Ever felt the need to shout your lungs out? To convey a message that needs conveying? Antaragnee, the street play competition of IIT Gandhinagar allows you to do just that. Be a part of the change that India needs, and deserves. Be a part of the tradition of nukkad nataks, which through its sheer energy and crowd interaction has managed to establish itself as a premier form of meaningful entertainment. So what are you waiting for?
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab4" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/euphony.gif">
+                                    <div class="caption">
+                                        <h3>Euphony</h3>
+                                        <p>Once again, IIT Gandhinagar is back with Euphony – a one of a kind solo singing competition in Blithchron’16. Consisting of three rounds: The Eliminations, Semi-Finals and The Gala (Finale), this is the perfect Launchpad to musical super stardom. So all you nightingales out there, get ready to intone and chant. All you Sonu Nigams and Shreya Ghoshal would rue missing this one.</p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab5" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/adrenaline.png">
+                                    <div class="caption">
+                                        <h3>Adrenaline</h3>
+                                        <p> Do you want to get an exciting and thrilling experience of a race and surprising tasks? Do you have the ability to solve the clues? Do you have energy to travel continuously to different places of Ahmedabad? If yes, Then Adrenaline is waiting for you.
+                                            <br>It is an exciting and thrilling race against time and energy to be held all over Ahmedabad. Surprising and interesting tasks are waiting for you at different places of Ahmedabad. After completion, clues will be given to teams which would lead them to next checkpoint for another thrilling task.
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab6" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/synchro.png">
+                                    <div class="caption">
+                                        <h3>Synchronize</h3>
+                                        <p>
+                                            The dance competition at Blithchron, where we see some of the best dance teams battling it out against each other. It's a treat to watch as the team's set the stage on fire with their moves and charisma as they groove to the music mesmerizing the crowd.
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab7" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/string-pushpak.png">
+                                    <div class="caption">
+                                        <h3>String Theory</h3>
+                                        <p>Get ready to engage yourselves in a screaming extravaganza, because the very much awaited Battle of Bands is back, and that too with a Bang !!. People be ready to be blown away by the extra punch packed performances and bands be ready to deliver the punch, because this time around the stage is bigger, the stakes are higher and so is the prize.</p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab8" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/comedy.jpg">
+                                    <div class="caption">
+                                        <h3>Stand-Up Comedy</h3>
+                                        <p>
+                                            Nobody is joking when they say that "Comedy is a serious business". Everyone loves to be the joker of their group, so why not unleash that joker in front of the crowd? Admit it, you've already started making up jokes ;)
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab9" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/alfaaz.jpg">
+                                    <div class="caption">
+                                        <h3>Alfaaz</h3>
+                                        <p>
+                                            Poetry is an echo, asking a shadow to dance. Poetry is language at its most distilled and most powerful. A poet is a nightingale, who sits in darkness and sings to cheer its own solitude with sweet sounds.
+                                            <br> This is an original poetry recitation competition where participants will have to submit a genuine self-composed piece of Hindi/English poetry. The poem would be scrutinized and best of them will be awarded.
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab10" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/jobless.png">
+                                    <div class="caption">
+                                        <h3>Jobless</h3>
+                                        <p>
+                                            It is time to come and test how prepared are you to face your competition in the professional world. Face the challenges that you are going to face in the corporate sector. Be prepared to go through the three grueling rounds and make sure you don&#39;t end up JOBLESS.
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab11" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/mmb.gif" style="width:100%; height: auto;">
+                                    <div class="caption">
+                                        <h3>Mr. and Ms. Blithchron</h3>
+                                        <p>
+                                            Calling attention to all hunks and divas of Gujarat. Do you think you have got the X factor to wow the crowd with your personality? If yes, then here is an opportunity for you. Show your mettle and walk away with your head held high, your prestige intact and of course with coveted title.
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab12" class="tab-pane fade">
+                                <div class="thumbnail">
+                                    <img src="img/event-thumbs/cs-source2.jpg">
+                                    <div class="caption">
+                                        <h3>Skirmish</h3>
+                                        <p>
+                                            Inviting gamers from all over Gujarat!!
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-default">Rules and Eligibility</button> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Register</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
+    </div>
 
 
 
-        <div class="jumbotron" id="section3" style="background:black; background-image:url('img/acco.jpg'); background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%; padding:15%;">
+        <div class="container-fluid" id="section5" style="margin-top:-31px;">
+        <div class="jumbotron" id="abc" style="">
             <div class="container" style="color:white;">
                 <div class="page-header">
                     <h1>Blithchron Village</h1>
                 </div>
-                <p>Write something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village here</p>                 
-                <p>Write something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village here</p>
-                    <p>
-                    Write something about Blithchron Village hereWrite something about Blithchron Village hereWrite something about Blithchron Village here</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vehicula mi efficitur mauris ultrices, vitae condimentum nisl efficitur. Aenean lacus sem, vehicula eu eros ut, cursus rutrum tortor. Aliquam ac mi iaculis, vulputate lacus quis, imperdiet ante. Fusce lacinia metus sem, in consectetur libero ultrices vitae. Fusce semper purus nec sollicitudin fringilla. Maecenas ante lacus, commodo quis leo vel, fermentum maximus libero. Nulla bibendum sem vel orci ultricies, vitae cursus odio finibus. Donec egestas ut est sit amet mollis. Nunc accumsan sed eros nec malesuada. Nunc pharetra dolor magna, sit amet suscipit lacus facilisis sed. Integer nec dignissim ligula.</p>
+                <p>
+
+                    Mauris faucibus ex in ante convallis, a semper erat bibendum. Ut luctus non urna in feugiat. Etiam auctor dolor nibh, id suscipit nisi tincidunt eget. Duis maximus elementum molestie. Sed placerat sapien id nisl tempor, vel scelerisque mauris finibus. Vestibulum ullamcorper nunc sed feugiat hendrerit. Nullam quis venenatis eros. Suspendisse quis pulvinar arcu, vitae suscipit leo. Nulla et fermentum libero, elementum elementum dolor.</p>
             </div>
         </div>
+    </div>
 
 
-        <div class="jumbotron" id="section4" style="background:black">
+        <div class="container-fluid" id="section7" style="margin-top:-31px;">
+        <div class="jumbotron" style="background:black; padding:10% 1% 13% 1%; text-align:center;">
             <div class="container" style="color:white;">
-                <h2>Contact Us</h2>
-                <p>You can contact any member of the Blithchron Team directly, or you can send us an email.
-                    <br>Like us on Facebook to get updates!</p>
+                <div class="page-header">
+                    <h1>Contact Us</h1></div>
+                <div class="container">
+                    <div class="row">
+                        
+                            <a href="https://www.facebook.com/Blithchron/" target="_blank"><img src="img/s-icons.com-png/s-icons.com-png/64x64/s-icons_social-media-icons_basic_round_set_gradient-color_64x64_0000_facebook.png" class="social"> </a> &nbsp; &nbsp; 
+                        
+                        
+                            <a href="https://twitter.com/blithchroniitgn" target="_blank"><img src="img/s-icons.com-png/s-icons.com-png/64x64/s-icons_social-media-icons_basic_round_set_gradient-color_64x64_0002_twitter.png" class="social"> </a> &nbsp; &nbsp; 
+                        
+                   
+                            <a href="https://www.youtube.com/user/BlithchronIITGN" target="_blank"><img src="img/s-icons.com-png/s-icons.com-png/64x64/s-icons_social-media-icons_basic_round_set_gradient-color_64x64_0004_youtube.png" class="social"> </a> &nbsp; &nbsp; 
+                    
+                        
+                            <a href="https://plus.google.com/103693851333093784075" target="_blank"><img src="img/s-icons.com-png/s-icons.com-png/64x64/s-icons_social-media-icons_basic_round_set_gradient-color_64x64_0003_google+.png" class="social"> </a>
+                      
+                        
+
+                    </div>
+                </div>
+                <br>
+                <br> Mobile: xxxxx-xxxxx
+                <br>Email: blithchron@iitgn.ac.in
+                
+                
+                
+                
             </div>
         </div>
+    </div>
     </div>
 
                                 

@@ -57,3 +57,22 @@ h1.B16 {
 #section1.container {
     background: repeating-radial-gradient( circle, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
 }
+
+
+
+.carousel-caption {
+    top: 30%;
+    bottom: auto;
+}
+
+#abc {
+    background: black;
+    background-image: url('../img/tileable-light-blurs-and-abstract-circles-18.png');
+    background-size: 100%;
+    padding: 15%;
+}
+
+#section7 div div img
+{
+	height: 45px;
+}p
