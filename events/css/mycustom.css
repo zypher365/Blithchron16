@@ -1,0 +1,30 @@
+#side_timeline
+{
+	position: fixed;
+	z-index: 100;
+	top: 20%;
+    left: 5%;
+    border-left: solid 2px;
+	padding: 0.3% 0 1% 0;
+	font-size: 13px;
+	width: auto;
+}
+
+#side_timeline ul li
+{
+	padding: 7px 2px 5% 0;
+	width: auto;
+}
+
+#side_timeline ul li a
+{
+	border-bottom:solid 1px;
+	padding-left: 5px;
+	transition: 0.3s;
+}
+
+#side_timeline ul li a:hover
+{
+	font-size: 20px;
+	color: #fff;
+}
