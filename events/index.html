@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
 	<link rel="stylesheet" href="css/mycustom.css"> <!-- Resource style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	<script src="js/jquery-2.1.4.js"></script> <!-- Modernizr -->
+	
   	
 	
 		
@@ -19,15 +21,49 @@
 <link rel="stylesheet" id="stylesheet-css" href="http://www.unmaad.com/wp-content/themes/simplicity/css/stylesheet.min.css?ver=4.4.1" type="text/css" media="all">
 	
 <link rel="stylesheet" id="style_dynamic-css" href="http://www.unmaad.com/wp-content/themes/simplicity/css/style_dynamic.php?ver=4.4.1" type="text/css" media="all">
-
+<link rel="stylesheet" href="css/mycustom.css">
 
 <script type="text/javascript" src="http://www.unmaad.com/wp-includes/js/jquery/jquery.js?ver=1.11.3"></script>
 
 <!--dropdown-->
 	
 	
+	<script>
+		$(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+			
+			
+			$('#side_timeline ul li a').click(function(){
+			
+			
+			$('#side_timeline ul li a').removeClass('active');
+			$(this).addClass('active');
+		});
+			
+			
+		
+});
+		
+		
+		
+		
+		
+		
+	</script>
 	
-	<title>Page Scroll Effects | CodyHouse</title>
+	
+	<title>Blithchron- Events</title>
 </head>
 <!-- hijacking: on/off - animation: none/scaleDown/rotate/gallery/catch/opacity/fixed/parallax -->
 
@@ -38,14 +74,14 @@
 		
 		<div id="side_timeline">
 			<ul>
-				<li><a href="#">Event1</a></li>
-				<li><a href="#">Event1</a></li>
-				<li><a href="#">Event1</a></li>
-				<li><a href="#">Event1</a></li>
+				<li><a href="#section1" class="active">Event1</a></li>
+				<li><a href="#section2">Event2</a></li>
+				<li><a href="#section3">Event3</a></li>
+				<li><a href="#section4">Event4</a></li>
 				
 		</ul>
 		</div>
-		<section class="cd-section visible">
+		<section id="section1" class="cd-section visible">
 			<div>
 				
 	
@@ -54,11 +90,15 @@
 
 				
 				
-				
-				
 <!--		main dropdown	-->
 
-<div style="width:45%;" class="accordion_holder accordion clearfix ui-accordion ui-widget ui-helper-reset" role="tablist">
+<div class="two_columns_50_50 clearfix event_info">
+	<div class="column1 event_image">
+		<img src="../img/event-thumbs/adrenaline.png"/>
+				
+	</div>	
+<div class="column2 my_dropdown"><div class="column_inner">
+<div class="accordion_holder accordion clearfix ui-accordion ui-widget ui-helper-reset" role="tablist">
 <h5 style="color: ;" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" id="ui-accordion-1-header-0" aria-controls="ui-accordion-1-panel-0" aria-selected="false" tabindex="0"><span><span class="control-pm grey"></span></span>Overview</h5><div class="accordion_content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-1-panel-0" aria-labelledby="ui-accordion-1-header-0" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"><div class="accordion_content_inner">
 <p style="text-align: justify;">Gear up for Unmaad with an amazing journey this <span style="color: #e03d3d;"><strong>17th of January, 2016 (Sunday).</strong></span> As we rejuvenate ourselves this Unmaad with ‘A Breath of Life’, take this opportunity to explore Bangalore through roads less travelled to places less frequented. Make the most of what this beautiful city has to offer by cracking clues, completing fun and exciting tasks and winning special goodies for each of them, all within the city of Bangalore! So get a two-wheeler and bring along a teammate to participate in the most awaited prelude event ‘Road To Unmaad’ 2016. What’s more? Attractive prizes worth over 50,000/- to be won, with many more surprises in store!</p>
 </div></div>
@@ -116,32 +156,28 @@
 <p>&nbsp;</p>
 		
 																				
-<!--	Dropdown ends-->
-			
-				
-				
-				
-				
+	
+					
 	
 		
 
 			</div>
 		</section>
 
-		<section class="cd-section">
+		<section id="section2" class="cd-section">
 			<div>
 				<h2>Section 2</h2>
 				
 			</div>
 		</section>
 
-		<section class="cd-section">
+		<section id="section3" class="cd-section">
 			<div>
 				<h2>Section 3</h2>
 			</div>
 		</section>
 
-		<section class="cd-section">
+		<section id="section4" class="cd-section">
 			<div>
 				<h2>Section 4</h2>
 			</div>
@@ -150,6 +186,20 @@
 		<section class="cd-section">
 			<div>
 				<h2>Section 5</h2>
+			</div>
+		</section>
+	
+	
+		<section class="cd-section">
+			<div>
+				<h2>Section 6</h2>
+			</div>
+		</section>
+	
+	
+		<section class="cd-section">
+			<div>
+				<h2>Section 7</h2>
 			</div>
 		</section>
 
